@@ -3,19 +3,15 @@ package main
 import (
 	"advent-of-code-2022/m/v2/day2/task1"
 	"advent-of-code-2022/m/v2/day2/task2"
-	"strings"
-
-	// "advent-of-code-2022/m/v2/day1/task2"
-	"advent-of-code-2022/m/v2/utils"
+	_ "embed"
 	"fmt"
+	"strings"
 )
 
-func main() {
-	input, err := utils.ReadInputFile()
-	if err != nil {
-		panic(err)
-	}
+//go:embed input
+var input string
 
+func main() {
 	rounds, err := inputToRounds(input)
 	if err != nil {
 		panic(err)
@@ -28,9 +24,10 @@ func main() {
 	fmt.Println("Guided Total Score", guidedTotalScore)
 }
 
-func inputToRounds(input []string) ([][]string, error) {
-	rounds := make([][]string, len(input))
-	for i, line := range input {
+func inputToRounds(input string) ([][]string, error) {
+	lines := strings.Split(input, "\n")
+	rounds := make([][]string, len(lines))
+	for i, line := range lines {
 		moves := strings.Split(line, " ")
 		if len(moves) != 2 {
 			return nil, fmt.Errorf("Expected 2 moves per input line, but saw '%#v'", moves)

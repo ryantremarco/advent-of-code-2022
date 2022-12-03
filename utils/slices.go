@@ -4,6 +4,7 @@ import (
 	"sort"
 
 	"golang.org/x/exp/constraints"
+	"golang.org/x/exp/slices"
 )
 
 type SortDirection string
@@ -24,4 +25,19 @@ func Sort[T constraints.Ordered](arr []T, dir SortDirection) {
 			return arr[i] < arr[j]
 		}
 	})
+}
+
+func Remove[T comparable](arr []T, toRemove T) []T {
+	copy := append([]T{}, arr...)
+
+	for slices.Contains(copy, toRemove) {
+		for i, item := range copy {
+			if item == toRemove {
+				copy = append(copy[:i], copy[i+1:]...)
+				break
+			}
+		}
+	}
+
+	return copy
 }

@@ -41,3 +41,11 @@ func Remove[T comparable](arr []T, toRemove T) []T {
 
 	return copy
 }
+
+func Map[T any, V any](arr []T, mapper func(T) V) []V {
+	out := make([]V, len(arr))
+	for i, item := range arr {
+		out[i] = mapper(item)
+	}
+	return out
+}

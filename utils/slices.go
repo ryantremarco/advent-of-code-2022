@@ -14,6 +14,16 @@ const (
 	SortDesc = "DESC"
 )
 
+func Contains[T comparable](arr []T, other T) bool {
+	for _, item := range arr {
+		if item == other {
+			return true
+		}
+	}
+
+	return false
+}
+
 func Sort[T constraints.Ordered](arr []T, dir SortDirection) {
 	sort.Slice(arr, func(i, j int) bool {
 		switch dir {

@@ -20,9 +20,9 @@ func main() {
 		panic(err)
 	}
 
-	part2Stacks := make([]utils.Stack[string], len(stacks))
+	part2Stacks := make([]utils.List[string], len(stacks))
 	for i := range stacks {
-		part2Stacks[i] = utils.StackFrom(stacks[i].Slice())
+		part2Stacks[i] = utils.ListFrom(stacks[i].Slice())
 	}
 	topItems := task1.TopStackItems(stacks, moves)
 	println("Top Stack Items", topItems)
@@ -31,7 +31,7 @@ func main() {
 	println("Multimove Top Stack Items", multimoveTopItems)
 }
 
-func inputToStacksAndMoves(input string) ([]utils.Stack[string], []models.Move, error) {
+func inputToStacksAndMoves(input string) ([]utils.List[string], []models.Move, error) {
 	split := strings.Split(input, "\n\n")
 	if len(split) != 2 {
 		return nil, nil, fmt.Errorf("expected stacks and moves input, got %#v", split)
@@ -41,7 +41,7 @@ func inputToStacksAndMoves(input string) ([]utils.Stack[string], []models.Move, 
 	stackLines := strings.Split(stackInput, "\n")
 	stackLines = stackLines[0 : len(stackLines)-1]
 	stackCount := (len(stackLines[0]) + 1) / 4
-	stacks := make([]utils.Stack[string], stackCount)
+	stacks := make([]utils.List[string], stackCount)
 
 	moveInput := split[1]
 	moveLines := strings.Split(moveInput, "\n")

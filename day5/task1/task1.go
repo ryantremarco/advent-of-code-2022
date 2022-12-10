@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func TopStackItems(stacks []utils.Stack[string], moves []models.Move) string {
+func TopStackItems(stacks []utils.List[string], moves []models.Move) string {
 	for _, move := range moves {
 		for i := 0; i < move.Count; i++ {
 			popped := stacks[move.From-1].Pop()

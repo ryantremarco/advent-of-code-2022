@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func MultimoveTopStackItems(stacks []utils.Stack[string], moves []models.Move) string {
+func MultimoveTopStackItems(stacks []utils.List[string], moves []models.Move) string {
 	for _, move := range moves {
 		popped := stacks[move.From-1].PopN(move.Count)
 		stacks[move.To-1].Push(popped...)
